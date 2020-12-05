@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --log-file -
+web: daphne config.asgi:application --log-file -
