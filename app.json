@@ -10,6 +10,10 @@
         "SECRET_KEY": {
             "description": "Django's SECRET_KEY setting",
             "generator": "secret"
+        },
+        "DJANGO_SETTINGS_MODULE": {
+            "description": "setting env variable",
+            "value":"config.setting"
         }
     },
     "addons": ["heroku-postgresql", "heroku-redis"],
