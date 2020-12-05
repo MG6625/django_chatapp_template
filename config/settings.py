@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
 
 TIME_ZONE = 'UTC'
 
@@ -126,8 +126,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            # "hosts": [('127.0.0.1', 6379)],
-            "hosts": ["redis://h:p14a5412d8d770615c20b39a6b4f49291e8812c200ba0daeefc9dbc0d29a97e5e@ec2-34-193-55-53.compute-1.amazonaws.com:14819"],
+            "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
