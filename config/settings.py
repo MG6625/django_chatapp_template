@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '+20y-umrgg1e9kw@mpm(skzh%5%#y&f8xm3w4=3q3nq0jxvtl@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko'
 
 TIME_ZONE = 'UTC'
 
@@ -126,11 +127,17 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            # "hosts": [('127.0.0.1', 6379)],
-            "hosts": ["redis://h:p14a5412d8d770615c20b39a6b4f49291e8812c200ba0daeefc9dbc0d29a97e5e@ec2-34-193-55-53.compute-1.amazonaws.com:14819"],
+            "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'chatapp', 'static')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 
 import dj_database_url 
