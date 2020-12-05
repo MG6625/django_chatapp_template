@@ -138,7 +138,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
+folder_list = [STATIC_ROOT] + STATICFILES_DIRS
+for dir in folder_list:
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 import dj_database_url 
 db_from_env = dj_database_url.config(conn_max_age=500) 
