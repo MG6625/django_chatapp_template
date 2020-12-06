@@ -23,6 +23,12 @@
             + '/'
         );
 
+        chatSocket.onopen = function(e) {
+            chatSocket.send(JSON.stringify({
+                'message': '[SYSTEM] 누군가가 입장했습니다.'
+            }));
+        }
+
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             document.querySelector('#chat-log').value += (data.message + '\n');
@@ -42,9 +48,15 @@
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
+            const messageArea = document.querySelector('#chat-log');
+
+            if (message){
+                chatSocket.send(JSON.stringify({
+                    'message': message
+                }));
+            }
+
+            messageArea.scrollTop = messageArea.scrollHeight;
             messageInputDom.value = '';
         };
     </script>

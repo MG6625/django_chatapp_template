@@ -15,6 +15,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
 
     async def disconnect(self, close_code):
+
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'leave_message',
+                'message': 'message'
+            }
+        )
         # Leave room group
         await self.channel_layer.group_discard(
             self.room_group_name,
@@ -34,6 +42,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'message': message
             }
         )
+
+    async def leave_message(self, event):
+        await self.send(text_data=json.dumps({
+            'message': "[SYSTEM] 누군가가 퇴장했습니다."
+        }))
+
 
     # Receive message from room group
     async def chat_message(self, event):
